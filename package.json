@@ -1,0 +1,14 @@
+{
+  "name": "iconfonts-watcher",
+  "version": "0.1.0",
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-watch": "*",
+    "yargs": "*"
+  },
+  "dependencies": {
+    "yargs": "~1.3.3",
+    "gulp-watch": "~3.0.0",
+    "gulp": "~3.8.10"
+  }
+}
