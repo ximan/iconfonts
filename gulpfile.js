@@ -85,7 +85,11 @@ gulp.task('listen', function() {
 
 
 gulp.task('create',function(){
-    var name = args.name;
+    // 修改支持2个参数，第一个参数项目名，第二个参数icon名
+    var param = args.name;
+    var arr = param.split(':');
+    var name = arr[0];
+    var iconName = (arr[1]) ? arr[1] : 'icon';
 
     var dir = path.join(__dirname,name);
 
@@ -101,7 +105,7 @@ gulp.task('create',function(){
             console.log('创建配置文件！');
             fs.open(yml, "w", 0644, function(e, fd) {
                 var string = 'font_name: ' + name + '\n' +
-                    'css_selector: .icon-{{glyph}}' + '\n' +
+                    'css_selector: .'+iconName+'-{{glyph}}' + '\n' +
                     'preprocessor_path: ""' + '\n' +
                     'autowidth: false' + '\n' +
                     'no_hash: true' + '\n' +
