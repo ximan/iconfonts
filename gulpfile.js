@@ -150,7 +150,7 @@ gulp.task('create',function(){
 })
 
 
-//task::watch less
+// 监控svg文件夹变化
 gulp.task('watch', function() {
     gulp.watch('**/svg/*.svg',function(info){
         console.log(info);
@@ -161,7 +161,11 @@ gulp.task('watch', function() {
         var foldPath = info.path.replace(re2, '');
         var outerPath = foldPath.replace(re3, '');
         var path = info.path.replace(re, '');
-        var name = path.split('/')[0];
+        // 修改支持2个参数，第一个参数项目名，第二个参数icon名
+        var param = args.name;
+        var arr = param.split(':');
+        var name = arr[0];
+        var iconName = (arr[1]) ? arr[1] : 'icon';
         console.log(foldPath, outerPath);
 
         fs.exists(outerPath + '/fontcustom.yml', function(exist) {
@@ -171,7 +175,7 @@ gulp.task('watch', function() {
                 console.log('创建配置文件！');
                 fs.open(outerPath + '/fontcustom.yml', "w", 0644, function(e, fd) {
                     var string = 'font_name: ' + name + '\n' +
-                        'css_selector: .icon-{{glyph}}' + '\n' +
+                        'css_selector: .'+iconName+'-{{glyph}}' + '\n' +
                         'preprocessor_path: ""' + '\n' +
                         'autowidth: false' + '\n' +
                         'no_hash: true' + '\n' +
